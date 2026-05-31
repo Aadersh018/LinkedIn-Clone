@@ -55,3 +55,20 @@ export const login = async(req,res)=>{
     return res.status(500).json({message:`login error ${error}`})
   }
 }
+
+export const getMe = async(req,res)=>{
+  try{
+    const userId = req.userId
+    const user = await User.findById(userId).select("-password")
+    if (!user) {
+      return res.status(404).json({ message: "user not found" })
+    }
+    return res.status(200).json({
+      message: "user fetched successfully",
+      user
+    })
+  }catch(error){
+    console.log(error)
+    return res.status(500).json({message:"error fetching user"})
+  }
+} 
