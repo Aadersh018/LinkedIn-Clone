@@ -9,4 +9,4 @@ authRouter.post("/login", login)
 authRouter.get("/me", isAuthenticated, getMe)
 
 
-export default authRouter
+export default authRouter;
